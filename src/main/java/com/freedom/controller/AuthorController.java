@@ -51,11 +51,18 @@ public class AuthorController {
         return "index";
     }
 
-    @PostMapping("author/update/{id}")
+    @PostMapping("author/edit/{id}")
     public String updateAuthor(@PathVariable("id") Long id , @Valid Author author, Model model) {
-        authorService.saveAuthor(author);
-        model.addAttribute("author" , authorService.findAllAuthor());
-        return "redirect:list";
+        Author update = authorService.update(id, author);
+        model.addAttribute("authors", authorService.findAllAuthor());
+        return "author-list";
+    }
+
+    @GetMapping("author/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        Author author = authorService.getById(id);
+        model.addAttribute("author", author);
+        return "author-update";
     }
 
 }

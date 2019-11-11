@@ -35,7 +35,7 @@
                         <tr th:each="author : ${authors}">
                             <td th:text="${author.name}"></td>
                             <td th:text="${author.description}"></td>
-                            <td><a th:href="@{/author/edit}" class="btn btn-primary"><i
+                            <td><a th:href="@{/author/edit/{id}(id=${author.id})}" class="btn btn-primary"><i
                                     class="fas fa-user-edit ml-2"></i></a></td>
                             <td><a th:href="@{/author/delete/{id}(id=${author.id})}" class="btn btn-primary"><i
                                     class="fas fa-user-times ml-2"></i></a></td>

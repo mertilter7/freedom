@@ -12,5 +12,7 @@ public interface AuthorService {
 
     Boolean delete(Long id);
 
+    Author update(Long id, Author author);
+
     List<Author> findAllAuthor();
 }

@@ -38,6 +38,15 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public Author update(Long id, Author request) {
+        Author author = authorRepository.getOne(id);
+        author.setName(request.getName());
+        author.setDescription(request.getDescription());
+        authorRepository.save(author);
+        return author;
+    }
+
+    @Override
     public List<Author> findAllAuthor() {
 
         return  authorRepository.findAll();
