@@ -1,11 +1,9 @@
 package com.freedom.service.impl;
-
 import com.freedom.entity.Author;
 import com.freedom.repository.AuthorRepository;
 import com.freedom.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
@@ -18,7 +16,6 @@ public class AuthorServiceImpl implements AuthorService {
     public AuthorServiceImpl(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
-
 
     @Override
     public Author saveAuthor(Author author) {
@@ -42,6 +39,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<Author> findAllAuthor() {
+
         return  authorRepository.findAll();
     }
 }

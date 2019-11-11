@@ -1,6 +1,4 @@
 package com.freedom.controller;
-
-
 import com.freedom.entity.Author;
 import com.freedom.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.validation.Valid;
 
 @Controller
@@ -20,11 +17,13 @@ public class AuthorController {
 
     @Autowired
     public AuthorController(AuthorService authorService) {
+
         this.authorService = authorService;
     }
 
     @GetMapping("author")
     public String showAuthor(Author author) {
+
         return "author-create";
     }
 
@@ -36,13 +35,13 @@ public class AuthorController {
         }
 
         authorService.saveAuthor(author);
-        return "redirect:list";
+        return "redirect:authors";
     }
 
-    @GetMapping("list")
+    @GetMapping("authors")
     public String listAuthors(Model model){
         model.addAttribute("authors", authorService.findAllAuthor());
-        return "index";
+        return "author-list";
     }
 
     @GetMapping("author/delete/{id}")
@@ -52,5 +51,11 @@ public class AuthorController {
         return "index";
     }
 
+    @PostMapping("author/update/{id}")
+    public String updateAuthor(@PathVariable("id") Long id , @Valid Author author, Model model) {
+        authorService.saveAuthor(author);
+        model.addAttribute("author" , authorService.findAllAuthor());
+        return "redirect:list";
+    }
 
 }

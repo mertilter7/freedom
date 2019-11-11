@@ -1,10 +1,8 @@
 package com.freedom.entity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 @Entity
