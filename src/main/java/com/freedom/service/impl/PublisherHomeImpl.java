@@ -38,6 +38,6 @@ public class PublisherHomeImpl implements PublisherHomeService {
     @Override
     public List<PublisherHome> findAllPublisherHome() {
         List<PublisherHome> publisherHomes = publisherHomeRepository.findAll();
-        return publisherHomes;
+        return publisherHomeRepository.findAll();
     }
 }

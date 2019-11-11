@@ -1,18 +1,18 @@
 package com.freedom.controller;
 
-
 import com.freedom.entity.PublisherHome;
 import com.freedom.service.PublisherHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
-@Service
-
+@Controller
 public class PublisherHomeController {
 
     private final PublisherHomeService publisherHomeService;
@@ -25,20 +25,35 @@ public class PublisherHomeController {
 
     @GetMapping("/publisherHome")
     public String show(PublisherHome publisherHome) {
-        return "publisherHome-create";
+
+        return "publisherhome-create";
     }
 
-    @PostMapping("/publisherHome")
+    @PostMapping("/publisherHomes")
     public String save(@Valid PublisherHome publisherHome, Model model) {
-        return "redirect:list";
+        publisherHomeService.save(publisherHome);
+        return "redirect:publisherhomes";
 
 
     }
-    @GetMapping("/publisherHome-list")
+
+    @GetMapping("/publisherhomes")
     public String listPublisherHomes(Model model) {
         model.addAttribute("publisherHomes", publisherHomeService.findAllPublisherHome());
-        return "index";
+        return "publisherhome-list";
     }
 
+    @GetMapping("/publisherHome/delete/{id}")
+    public String deletePublisherHome(@PathVariable("id") Long id, Model model) {
+        publisherHomeService.delete(id);
+        model.addAttribute("publisherHomes", publisherHomeService.findAllPublisherHome());
+        return "publisherhome-list";
+    }
 
+    @PostMapping("/publisherHome/update/{id}")
+    public String updatePublisherHome(@PathVariable("id") Long id, @Valid PublisherHome publisherHome, Model model) {
+        publisherHomeService.save(publisherHome);
+        model.addAttribute("publisherHome", publisherHomeService.findAllPublisherHome());
+        return "redirect:list";
+    }
 }

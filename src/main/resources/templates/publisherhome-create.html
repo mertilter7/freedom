@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Books</title>
+    <title>PublisherHomes</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Add User</title>
@@ -11,25 +11,23 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
+
 <div class="container my-5">
-    <h3> Create Book</h3>
+    <h3> Create PublisherHome</h3>
     <div class="card">
         <div class="card-body">
             <div class="col-md-10">
-                <form action="#" th:action="@{/books}" th:object="${book}" method="post">
+                <form action="#" th:action="@{/publisherHomes}" th:object="${publisherHome}" method="post">
                     <div class="row">
-
                         <div class="form-group col-md-8">
                             <label for="name" class="col-form-label">Name</label> <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                         </div>
-
                         <div class="form-group col-md-8">
                             <label for="description" class="col-form-label">Description</label> <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Description"> <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
                         </div>
 
-
                         <div class="col-md-6">
-                            <input type="submit" class="btn btn-primary" value="Create Book">
+                            <input type="submit" class="btn btn-primary" value="Create PublisherHome">
                         </div>
 
                         <div class="form-group col-md-8"></div>
