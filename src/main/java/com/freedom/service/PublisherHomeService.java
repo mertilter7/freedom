@@ -12,5 +12,7 @@ public interface PublisherHomeService {
 
     Boolean delete (Long id);
 
+    PublisherHome update(Long id, PublisherHome publisherHome);
+
     List<PublisherHome> findAllPublisherHome();
 }

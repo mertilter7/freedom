@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 public class PublisherHomeImpl implements PublisherHomeService {
 
-    private final PublisherHomeRepository  publisherHomeRepository;
+    private final PublisherHomeRepository publisherHomeRepository;
 
     @Autowired
-    public PublisherHomeImpl(PublisherHomeRepository publisherHomeRepository)  {
+    public PublisherHomeImpl(PublisherHomeRepository publisherHomeRepository) {
         this.publisherHomeRepository = publisherHomeRepository;
     }
 
@@ -25,7 +25,7 @@ public class PublisherHomeImpl implements PublisherHomeService {
 
     @Override
     public PublisherHome getById(Long id) {
-       return publisherHomeRepository.getOne(id);
+        return publisherHomeRepository.getOne(id);
 
     }
 
@@ -39,5 +39,14 @@ public class PublisherHomeImpl implements PublisherHomeService {
     public List<PublisherHome> findAllPublisherHome() {
         List<PublisherHome> publisherHomes = publisherHomeRepository.findAll();
         return publisherHomeRepository.findAll();
+    }
+
+    @Override
+    public PublisherHome update(Long id, PublisherHome request) {
+        PublisherHome publisherHome = publisherHomeRepository.getOne(id);
+        publisherHome.setName(request.getName());
+        publisherHome.setDescription(request.getDescription());
+        publisherHomeRepository.save(publisherHome);
+        return publisherHome;
     }
 }

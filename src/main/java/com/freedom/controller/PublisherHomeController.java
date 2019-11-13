@@ -26,34 +26,34 @@ public class PublisherHomeController {
     @GetMapping("/publisherHome")
     public String show(PublisherHome publisherHome) {
 
-        return "publisherhome-create";
+        return "publisherHome-create";
     }
 
     @PostMapping("/publisherHomes")
     public String save(@Valid PublisherHome publisherHome, Model model) {
         publisherHomeService.save(publisherHome);
-        return "redirect:publisherhomes";
+        return "redirect:publisherHomes";
 
 
     }
 
-    @GetMapping("/publisherhomes")
+    @GetMapping("/publisherHomes")
     public String listPublisherHomes(Model model) {
         model.addAttribute("publisherHomes", publisherHomeService.findAllPublisherHome());
-        return "publisherhome-list";
+        return "publisherHome-list";
     }
 
-    @GetMapping("/publisherHome/delete/{id}")
-    public String deletePublisherHome(@PathVariable("id") Long id, Model model) {
-        publisherHomeService.delete(id);
+    @PostMapping("publisherHome/edit/{id}")
+    public String updatePublisherHome(@PathVariable("id") Long id , @Valid PublisherHome publisherHome, Model model) {
+        PublisherHome update = publisherHomeService.update(id, publisherHome);
         model.addAttribute("publisherHomes", publisherHomeService.findAllPublisherHome());
         return "publisherhome-list";
     }
 
-    @PostMapping("/publisherHome/update/{id}")
-    public String updatePublisherHome(@PathVariable("id") Long id, @Valid PublisherHome publisherHome, Model model) {
-        publisherHomeService.save(publisherHome);
-        model.addAttribute("publisherHome", publisherHomeService.findAllPublisherHome());
-        return "redirect:list";
+    @GetMapping("publisherhome/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        PublisherHome publisherHome = publisherHomeService.getById(id);
+        model.addAttribute("publisherHome", publisherHome);
+        return "publisherhome-update";
     }
 }
